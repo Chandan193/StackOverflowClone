@@ -3,13 +3,13 @@ import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 
 import Home from '../pages/Home/Home'
-import Auth from '../Auth/Auth'
+import Auth from '../pages/Auth/Auth'
 
 const AllRoutes = () => {
   return (
    <Routes>
-    <Route path='/' Component={Home}/>
-    <Route path='/Auth' Component={Auth}/>
+    <Route path='/' element={<Home/>}/>
+    <Route path='/Auth' element={<Auth />}/>
    </Routes>
   )
 }
