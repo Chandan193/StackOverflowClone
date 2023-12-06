@@ -30,10 +30,15 @@ const Navbar = () => {
           <input type="text" placeholder="Search.."/>
           <img src={search} alt="search-icon" width="18" className="search-icon"/>
         </form>
-        { User === null ? (
-          <Link to="/Auth" className="nav-item nav-links">
-            Log In
-          </Link>
+        {User === null ? (
+          <div className="nav-links-container">
+            <Link to="/Auth" className="nav-item nav-links log-in">
+              Log In
+            </Link>
+            <Link to="/Auth2" className="nav-item sign-up">
+              Sign Up
+            </Link>
+          </div>
         ) : (
           <>
               <Avatar  backgroundColor='#009dff' px='12px' py='6px' borderRadius='50%' textDecoration="none"><Link to="/" style={ {color: 'white', textDecoration: 'none'}}>C</Link></Avatar>
