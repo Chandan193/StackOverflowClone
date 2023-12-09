@@ -1,7 +1,6 @@
-import React from 'react'
+import React from "react";
 
 const WidgetTags = () => {
-
   const tags = [
     "c",
     "css",
@@ -29,7 +28,7 @@ const WidgetTags = () => {
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default WidgetTags
+export default WidgetTags;

@@ -37,9 +37,6 @@ const Auth2 = () => {
             <input type="password" name='password' id='password' />
             {!isSignUp && (<p style={{ color: '#666767', fontSize: 13 }}>Passwords must contain at least eight characters, <br /> including at least 1 letter and 1 number.</p>)}
           </label>
-          <button type='submit' className='auth-btn'>
-            {isSignUp ? 'Log In' : 'Sign Up'}
-          </button>
          { ( !isSignUp &&
             <label htmlFor="check">
             <input type="checkbox" id='check' />
@@ -49,6 +46,9 @@ const Auth2 = () => {
               announcements, and digests.
             </p>
           </label>)}
+          <button type='submit' className='auth-btn'>
+            {isSignUp ? 'Log In' : 'Sign Up'}
+          </button>
           { !isSignUp && (
             <p style={{ color: '#666767', fontSize: 13 }}>
               By clicking “Sign up”, you agree to our

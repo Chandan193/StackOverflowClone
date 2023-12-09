@@ -15,36 +15,59 @@ const HomeMainbar = () => {
 
   var questionsList = [
     {
-      id: 1,
-      votes: 3,
+      _id: 1,
+      upVotes: 3,
+      downVotes: 3,
       noOfAnswers: 2,
       questionTitle: "What is a function?",
       questionBody: "It meant to be",
       questionTags: ["java", "node js", "react js", "mongo db"],
       userPosted: "Chandan",
-      askedOn: "feb 5, 2022"
+      userId: 1,
+      askedOn: "feb 5, 2022",
+      answer: [{
+        answerBody: "Answer",
+        userAnswered: "Ghosh",
+        answeredOn: "6 feb, 2022",
+        userId: 2,
+      }]
     },
     {
-      id: 2,
-      votes: 0,
+      _id: 2,
+      upVotes: 3,
+      downVotes: 2,
       noOfAnswers: 0,
       questionTitle: "What is a function?",
       questionBody: "It meant to be",
       questionTags: ["javascript", "R", "python"],
       userPosted: "Chandan",
-      askedOn: "jan 1, 2023"
+      userId: 1,
+      askedOn: "feb 10, 2023",
+      answer: [{
+        answerBody: "Answer",
+        userAnswered: "Ghosh",
+        answeredOn: "11 feb, 2022",
+        userId: 2,
+      }]
     },
     {
-      id: 3,
-      votes: 1,
-      noOfAnswers: 0,
+      _id: 3,
+      upVotes: 4,
+      downVotes: 0,
+      noOfAnswers: 2,
       questionTitle: "What is a function?",
       questionBody: "It meant to be",
-      questionTags: ["java", "c", "python", "javascript"],
+      questionTags: ["c", "c++", "java"],
       userPosted: "Chandan",
-      askedOn: "july 19, 2023"
+      userId: 1,
+      askedOn: "july 19, 2023",
+      answer: [{
+        answerBody: "Answer",
+        userAnswered: "Ghosh",
+        answeredOn: "july 19, 2023",
+        userId: 2,
+      }]
     }
-
   ]
 
 
