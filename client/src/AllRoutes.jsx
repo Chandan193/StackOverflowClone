@@ -2,12 +2,12 @@ import React from "react";
 
 import { Routes, Route } from "react-router-dom";
 
-import Home from "../pages/Home/Home";
-import Auth from "../pages/Auth/Auth";
-import Auth2 from "../pages/Auth/Auth2";
-import Questions from "../pages/Questions/Questions";
-import AskQuestion from "../pages/AskQuestion/AskQuestion";
-import DisplayQuestion from "../pages/Questions/DisplayQuestion";
+import Home from "./pages/Home/Home";
+import Auth from "./pages/Auth/Auth";
+import Auth2 from "./pages/Auth/Auth2";
+import Questions from "./pages/Questions/Questions";
+import AskQuestion from "./pages/AskQuestion/AskQuestion";
+import DisplayQuestion from "./pages/Questions/DisplayQuestion";
 
 const AllRoutes = () => {
   return (
