@@ -86,7 +86,7 @@
 .user-link div {
   padding-left: 10px;
 }
-
+/* post answer container */
 
 .post-ans-container form textarea {
   padding: 10px;
@@ -96,13 +96,12 @@
   resize: vertical;
 }
 
-
 .post-ans-container form .post-ans-btn {
   margin: 20px 0px;
   padding: 10px 10px;
   background-color: #009dff;
   color: white;
-  border: none;
+  border: solid 1px #009dff;
   border-radius: 4px;
   cursor: pointer;
   transition: 0.5s all;
@@ -112,6 +111,7 @@
   background-color: #0086d8;
 }
 
+/* Display answer container */
 
 .display-ans {
   padding-bottom: 20px;

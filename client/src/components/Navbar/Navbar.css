@@ -18,8 +18,6 @@
   height: 100%;
   min-width: 85%;
   display: flex;
-  left: 25px;
-  top: 18px;
   align-items: center;
   justify-content: space-between;
 }
@@ -34,13 +32,23 @@
   cursor: pointer;
 }
 
+.navbar .navbar-1 {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.navbar .navbar-2 {
+  display: flex;
+  align-items: center;
+}
 
 .nav-logo {
   padding: 5px 25px;
 }
 
 .nav-item {
-  margin: 0px 25px;
+  margin: 0px 3px;
   font-size: small;
   font-weight: 500;
   text-decoration: none;
@@ -51,21 +59,22 @@
 .nav-btn {
   cursor: pointer;
   border-radius: 20px;
-  padding: 10px 15px;
+  padding: 10px 20px;
 }
 
-.nav-item:hover {
+.nav-item:hover,
+.slide-in-icon:hover {
   background-color: rgb(226, 226, 226);
 }
 
-.navbar form {
+.navbar .navbar-1 form {
   flex-grow: 1;
   padding: 0px 12px;
   position: relative;
 }
 
-.navbar form input {
-  min-width: 80%;
+.navbar .navbar-1 form input {
+  min-width: 90%;
   margin: 0;
   padding: 8px 10px 8px 32px;
   font-size: 13px;
@@ -73,57 +82,38 @@
   border-radius: 3px;
 }
 
-.navbar form .search-icon {
+.navbar .navbar-1 form .search-icon {
   position: absolute;
   left: 25px;
   top: 8px;
 }
 
-.nav-links{
-  width: auto;
-  padding: 5px 12px;
-  border: 50px 10px ;
-  border: solid 1px blue;
-  border-radius: 5px;
-  background-color: #e7f8fe;
-  cursor: pointer;
-}
-
-.nav-links:hover{
-  background-color: #d3e4eb;
-}
-
-.nav-links-container {
-  display: flex;
-  align-items: center;
-}
-
 .nav-links {
-  padding: 5px 13px;
+  padding: 7px 13px;
   border: solid 1px blue;
-  border-radius: 5px;
+  border-radius: 3px;
   background-color: #e7f8fe;
   cursor: pointer;
-  flex-shrink: 0;
-  margin-left: 7px;
- 
 }
 
 .nav-links:hover {
   background-color: #d3e4eb;
 }
 
-.sign-up {
-  background-color: rgb(26, 26, 214);
-  color: white;
-  padding: 5px 13px;
-  border: solid 1px blue;
-  border-radius: 5px;
-  cursor: pointer;
-  flex-shrink: 0;
-  margin-left: -15px;
+@media screen and (max-width: 1120px) {
+  .navbar .navbar-1 form {
+    display: none;
+  }
 }
 
-.sign-up:hover {
-  background-color: #1b75d0;
+@media screen and (max-width: 760px) {
+  .slide-in-icon {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .navbar .navbar-1 .res-nav {
+    display: none;
+  }
 }

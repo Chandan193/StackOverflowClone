@@ -44,7 +44,7 @@
   margin: 50px 0px;
   padding: 10px;
   background-color: #009dff;
-  border: none;
+  border: solid 1px #009dff;
   color: white;
   border-radius: 4px;
   cursor: pointer;
