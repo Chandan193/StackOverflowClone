@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 
-import Home from "./Pages/Hom";
+import Home from "./Pages/Hom/Home";
 import Auth from "./Pages/Aut/Auth";
 import Questions from "./Pages/Questions/Questions";
 import AskQuestion from "./Pages/AskQuestion/AskQuestion";
