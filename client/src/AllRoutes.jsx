@@ -1,8 +1,8 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 
-import Home from "./Pages/Home/Home";
-import Auth from "./Pages/Auth/Auth";
+import Home from "./Pages/Hom";
+import Auth from "./Pages/Aut/Auth";
 import Questions from "./Pages/Questions/Questions";
 import AskQuestion from "./Pages/AskQuestion/AskQuestion";
 import DisplayQuestion from "./Pages/Questions/DisplayQuestion";
