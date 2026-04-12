@@ -1,53 +1,95 @@
 import mongoose from "mongoose";
 import Questions from "../models/Questions.js";
 
-export const postAnswer = async (req, res) => {
-  const { id: _id } = req.params;
-  const { noOfAnswers, answerBody, userAnswered } = req.body;
+export const AskQuestion = async (req, res) => {
+  const postQuestionData = req.body;
   const userId = req.userId;
-  if (!mongoose.Types.ObjectId.isValid(_id)) {
-    return res.status(404).send("question unavailable...");
-  }
 
-  updateNoOfQuestions(_id, noOfAnswers);
   try {
-    const updatedQuestion = await Questions.findByIdAndUpdate(_id, {
-      $addToSet: { answer: [{ answerBody, userAnswered, userId }] },
-    });
-    res.status(200).json(updatedQuestion);
+    const postQuestion = new Questions({ ...postQuestionData, userId });
+    await postQuestion.save();
+    res.status(200).json("Posted a question successfully");
   } catch (error) {
-    res.status(400).json("error in updating");
+    res.status(409).json("Couldn't post a new question");
   }
 };
 
-const updateNoOfQuestions = async (_id, noOfAnswers) => {
+export const getAllQuestions = async (req, res) => {
   try {
-    await Questions.findByIdAndUpdate(_id, {
-      $set: { noOfAnswers: noOfAnswers },
-    });
+    const questionList = await Questions.find();
+    res.status(200).json(questionList);
   } catch (error) {
-    console.log(error);
+    res.status(404).json({ message: error.message });
   }
 };
 
-export const deleteAnswer = async (req, res) => {
+export const deleteQuestion = async (req, res) => {
   const { id: _id } = req.params;
-  const { answerId, noOfAnswers } = req.body;
 
   if (!mongoose.Types.ObjectId.isValid(_id)) {
-    return res.status(404).send("Question unavailable...");
+    return res.status(404).send("Question unavailable");
   }
-  if (!mongoose.Types.ObjectId.isValid(answerId)) {
-    return res.status(404).send("Answer unavailable...");
-  }
-  updateNoOfQuestions(_id, noOfAnswers);
+
   try {
-    await Questions.updateOne(
-      { _id },
-      { $pull: { answer: { _id: answerId } } }
-    );
+    await Questions.findByIdAndDelete(_id);
     res.status(200).json({ message: "Successfully deleted..." });
   } catch (error) {
-    res.status(405).json(error);
+    res.status(404).json({ message: error.message });
+  }
+};
+
+export const voteQuestion = async (req, res) => {
+  const { id: _id } = req.params;
+  const { value } = req.body;
+  const userId = req.userId;
+
+  if (!mongoose.Types.ObjectId.isValid(_id)) {
+    return res.status(404).send("Question unavailable");
+  }
+
+  try {
+    const question = await Questions.findById(_id);
+
+    if (!question) {
+      return res.status(404).send("Question unavailable");
+    }
+
+    const upIndex = question.upVote.findIndex((id) => id === String(userId));
+    const downIndex = question.downVote.findIndex(
+      (id) => id === String(userId)
+    );
+
+    if (value === "upVote") {
+      if (downIndex !== -1) {
+        question.downVote = question.downVote.filter(
+          (id) => id !== String(userId)
+        );
+      }
+
+      if (upIndex === -1) {
+        question.upVote.push(userId);
+      } else {
+        question.upVote = question.upVote.filter((id) => id !== String(userId));
+      }
+    }
+
+    if (value === "downVote") {
+      if (upIndex !== -1) {
+        question.upVote = question.upVote.filter((id) => id !== String(userId));
+      }
+
+      if (downIndex === -1) {
+        question.downVote.push(userId);
+      } else {
+        question.downVote = question.downVote.filter(
+          (id) => id !== String(userId)
+        );
+      }
+    }
+
+    await Questions.findByIdAndUpdate(_id, question);
+    res.status(200).json({ message: "Voted successfully" });
+  } catch (error) {
+    res.status(404).json({ message: error.message });
   }
 };

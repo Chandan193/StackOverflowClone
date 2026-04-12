@@ -25,11 +25,11 @@ const Questions = ({ question }) => {
         <div className="display-tags-time">
           <div className="display-tags">
             {question.questionTags.map((tag) => (
-              <p key={tag}>{tag}</p>
+              <p key={tag} className="tag-chip">{tag}</p>
             ))}
           </div>
-          <p className="display-time">
-            asked {moment(question.askedOn).fromNow()} {question.userPosted}
+          <p className="display-time question-meta">
+            asked {moment(question.askedOn).fromNow()} by {question.userPosted}
           </p>
         </div>
       </div>

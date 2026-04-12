@@ -1,14 +1,14 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 
-import Home from "./Pages/Hom/Home";
-import Auth from "./Pages/Aut/Auth";
-import Questions from "./Pages/Questions/Questions";
-import AskQuestion from "./Pages/AskQuestion/AskQuestion";
-import DisplayQuestion from "./Pages/Questions/DisplayQuestion";
-import Tags from "./Pages/Tags/Tags";
-import Users from "./Pages/Users/Users";
-import UserProfile from "./Pages/UserProfile/UserProfile";
+import Home from "./pages/Hom/Home";
+import Auth from "./pages/Aut/Auth";
+import Questions from "./pages/Questions/Questions";
+import AskQuestion from "./pages/AskQuestion/AskQuestion";
+import DisplayQuestion from "./pages/Questions/DisplayQuestion";
+import Tags from "./pages/Tags/Tags";
+import Users from "./pages/Users/Users";
+import UserProfile from "./pages/UserProfile/UserProfile";
 
 const AllRoutes = ({ slideIn, handleSlideIn }) => {
   return (

@@ -1,25 +1,48 @@
-import express from 'express'
-import mongoose from 'mongoose'
-import cors from 'cors'
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
 
-import userRoutes from './routes/users.js'
+import connectDB from "./connectMongoDb.js";
+import userRoutes from "./routes/users.js";
+import questionRoutes from "./routes/Questions.js";
+import answerRoutes from "./routes/Answers.js";
+
+dotenv.config();
 
 const app = express();
-app.use(express.json({limit: "30mb", extended: true}))
-app.use(express.urlencoded({limit: "30mb", extended: true}))
-app.use(cors());
+const allowedOrigins = (process.env.CLIENT_URL || "")
+    .split(",")
+    .map((origin) => origin.trim())
+    .filter(Boolean);
 
-app.get('/',(req, res) => {
-    res.send("This is a stack overflow clone API")
-})
+const corsOptions = {
+    origin: allowedOrigins.length > 0 ? allowedOrigins : true,
+};
 
-app.use('/user', userRoutes)
+app.use(express.json({ limit: "30mb", extended: true }));
+app.use(express.urlencoded({ limit: "30mb", extended: true }));
+app.use(cors(corsOptions));
 
+app.get("/", (req, res) => {
+    res.send("This is a stack overflow clone API");
+});
 
-const PORT = process.env.PORT || 5000
+app.use("/user", userRoutes);
+app.use("/questions", questionRoutes);
+app.use("/answer", answerRoutes);
 
-const CONNECTION_URL = "mongodb+srv://chandan19:190703@stackoverflowclone.jm4d78c.mongodb.net/"
+const PORT = Number(process.env.PORT) || 5000;
 
-mongoose.connect( CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => app.listen(PORT, () => {console.log(`server is running on port ${PORT}`)}))
-    .catch((err) => console.log(err.message))
+const startServer = async () => {
+    try {
+        await connectDB();
+        app.listen(PORT, () => {
+            console.log(`server is running on port ${PORT}`);
+        });
+    } catch (error) {
+        console.error(error.message);
+        process.exit(1);
+    }
+};
+
+startServer();

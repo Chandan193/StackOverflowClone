@@ -1,3 +1,13 @@
+.App {
+  background:
+    radial-gradient(circle at 8% 15%, rgba(30, 136, 229, 0.08), transparent 36%),
+    radial-gradient(circle at 92% 80%, rgba(255, 107, 53, 0.08), transparent 32%),
+    var(--background);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
 .home-container-1 {
   min-height: 100vh;
   max-width: 1250px;
@@ -5,6 +15,9 @@
   display: flex;
   justify-content: space-between;
   margin: 0% auto;
+  margin-top: 56px;
+  padding-top: 24px;
+  background-color: var(--background);
 }
 
 .home-container-2 {
@@ -12,11 +25,16 @@
   width: calc(100% - 164px);
   padding: 24px;
   box-sizing: border-box;
+  background-color: transparent;
 }
 
 @media screen and (max-width: 760px) {
   .home-container-2 {
     max-width: 100%;
     width: 100%;
+  }
+
+  .home-container-1 {
+    flex-direction: column;
   }
 }

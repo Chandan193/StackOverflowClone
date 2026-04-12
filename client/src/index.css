@@ -1,13 +1,142 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap");
+
+:root {
+  /* Light Mode Colors */
+  --primary: #1e88e5;
+  --primary-light: #42a5f5;
+  --primary-dark: #1565c0;
+  --secondary: #ff6b35;
+  --background: #ffffff;
+  --surface: #f5f6f7;
+  --surface-light: #fafbfc;
+  --text: #1a1a1a;
+  --text-secondary: #707070;
+  --border: #d4d4d4;
+  --success: #4caf50;
+  --warning: #ff9800;
+  --error: #f44336;
+  --shadow: rgba(0, 0, 0, 0.1);
+  --hover: rgba(0, 0, 0, 0.05);
+  --active: rgba(30, 136, 229, 0.1);
+  --navbar-color: #f8f9f9;
+  --chip-a-bg: #dff3ff;
+  --chip-a-text: #06689f;
+  --chip-b-bg: #fff1dd;
+  --chip-b-text: #9a5600;
+  --chip-c-bg: #e9f7ec;
+  --chip-c-text: #2e7c3d;
+}
+
+[data-theme="dark"] {
+  /* Dark Mode Colors */
+  --primary: #1e88e5;
+  --primary-light: #42a5f5;
+  --primary-dark: #1565c0;
+  --secondary: #ff6b35;
+  --background: #0a0e27;
+  --surface: #1a1f3a;
+  --surface-light: #2d3142;
+  --text: #e0e0e0;
+  --text-secondary: #a0a0a0;
+  --border: #404858;
+  --success: #4caf50;
+  --warning: #ff9800;
+  --error: #f44336;
+  --shadow: rgba(0, 0, 0, 0.5);
+  --hover: rgba(255, 255, 255, 0.08);
+  --active: rgba(30, 136, 229, 0.2);
+  --navbar-color: #1a1f3a;
+  --chip-a-bg: #0f3f54;
+  --chip-a-text: #83dfff;
+  --chip-b-bg: #4b300d;
+  --chip-b-text: #ffcf8d;
+  --chip-c-bg: #133b22;
+  --chip-c-text: #9be6b0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: "Manrope", "Segoe UI", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background);
+  color: var(--text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  position: relative;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  z-index: -1;
+  border-radius: 999px;
+  filter: blur(70px);
+  pointer-events: none;
+}
+
+body::before {
+  width: 360px;
+  height: 360px;
+  top: -120px;
+  right: 8%;
+  background: rgba(30, 136, 229, 0.2);
+}
+
+body::after {
+  width: 300px;
+  height: 300px;
+  bottom: -120px;
+  left: 6%;
+  background: rgba(255, 107, 53, 0.18);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Sora", "Manrope", sans-serif;
+  letter-spacing: -0.02em;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
 }

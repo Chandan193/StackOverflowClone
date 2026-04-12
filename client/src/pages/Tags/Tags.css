@@ -1,36 +1,70 @@
 .tags-h1 {
-  margin-top: 50px;
-  font-weight: 400;
+  margin-top: 0px;
+  font-weight: 600;
+  color: var(--text);
+  font-size: 28px;
+  margin-bottom: 8px;
 }
 
 .tags-p {
-  margin: 0px;
+  margin: 8px 0px;
   font-size: 15px;
+  color: var(--text-secondary);
+}
+
+.tags-p:first-of-type {
+  margin-top: 0;
 }
 
 .tags-list-container {
   padding: 30px 0px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 10px;
+  gap: 16px;
 }
 
 .tag {
-  padding: 10px;
-  border: solid 1px #d2d2d2;
-  border-radius: 2px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background-color: var(--surface);
+  box-shadow: 0px 2px 6px var(--shadow);
+  transition: all 0.2s ease;
+}
+
+.tag:hover {
+  box-shadow: 0px 4px 12px var(--shadow);
+  border-color: var(--primary-light);
+  transform: translateY(-2px);
 }
 
 .tag h5 {
   display: inline-block;
-  margin: 10px 0px;
-  padding: 5px 5px;
-  background-color: #e1ecf4;
-  color: #39739d;
+  margin: 8px 0px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.tag:nth-child(3n + 1) h5 {
+  background: linear-gradient(135deg, var(--chip-a-bg), #bde8ff);
+  color: var(--chip-a-text);
+}
+
+.tag:nth-child(3n + 2) h5 {
+  background: linear-gradient(135deg, var(--chip-b-bg), #ffe5bf);
+  color: var(--chip-b-text);
+}
+
+.tag:nth-child(3n) h5 {
+  background: linear-gradient(135deg, var(--chip-c-bg), #c8f0d4);
+  color: var(--chip-c-text);
 }
 
 .tag p {
   font-size: 14px;
-  color: #323232;
-  line-height: 17px;
+  color: var(--text);
+  line-height: 20px;
+  margin: 8px 0px;
 }

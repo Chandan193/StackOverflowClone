@@ -1,17 +1,18 @@
 .main-nav {
-  min-height: 50px;
+  min-height: 56px;
   width: 100%;
   margin: 0% auto;
-  border-top: solid 3px #ef8236;
-  box-shadow: 0px 1px 5px #00000033;
+  border-bottom: 3px solid var(--primary);
+  box-shadow: 0px 2px 8px var(--shadow);
   position: fixed;
   z-index: 15;
   top: 0%;
   left: 0%;
-  background-color: #f8f9f9;
+  background-color: var(--navbar-color);
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .navbar {
@@ -20,84 +21,186 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 10px;
 }
 
 .slide-in-icon {
   display: none;
   transition: 0.2s;
-  padding: 5px 6px 3px 6px;
-  border-radius: 50%;
-  background-color: inherit;
+  padding: 8px 8px;
+  border-radius: 8px;
+  background-color: transparent;
   border: none;
   cursor: pointer;
+  color: var(--text);
+}
+
+.slide-in-icon:hover {
+  background-color: var(--hover);
 }
 
 .navbar .navbar-1 {
   display: flex;
   align-items: center;
   flex-grow: 1;
+  gap: 5px;
 }
 
 .navbar .navbar-2 {
   display: flex;
   align-items: center;
+  gap: 12px;
 }
 
 .nav-logo {
-  padding: 5px 25px;
+  padding: 8px 20px;
+  display: flex;
+  align-items: center;
+}
+
+.nav-logo img {
+  max-height: 35px;
+  transition: 0.3s;
+}
+
+.nav-logo:hover img {
+  transform: scale(1.05);
 }
 
 .nav-item {
-  margin: 0px 3px;
-  font-size: small;
+  margin: 0px;
+  font-size: 14px;
   font-weight: 500;
   text-decoration: none;
-  color: rgb(69, 69, 69);
-  transition: 0.2s;
+  color: var(--text);
+  transition: all 0.2s ease;
 }
 
 .nav-btn {
   cursor: pointer;
-  border-radius: 20px;
-  padding: 10px 20px;
+  border-radius: 6px;
+  padding: 10px 16px;
+  background-color: transparent;
+  border: none;
 }
 
 .nav-item:hover,
 .slide-in-icon:hover {
-  background-color: rgb(226, 226, 226);
+  background-color: var(--hover);
+  color: var(--primary);
 }
 
 .navbar .navbar-1 form {
   flex-grow: 1;
   padding: 0px 12px;
   position: relative;
+  max-width: 250px;
 }
 
 .navbar .navbar-1 form input {
-  min-width: 90%;
+  width: 100%;
   margin: 0;
-  padding: 8px 10px 8px 32px;
-  font-size: 13px;
-  border: solid 1px #0000003e;
-  border-radius: 3px;
+  padding: 10px 12px 10px 36px;
+  font-size: 14px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background-color: var(--surface);
+  color: var(--text);
+  transition: all 0.2s ease;
+}
+
+.navbar .navbar-1 form input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--active);
+}
+
+.navbar .navbar-1 form input::placeholder {
+  color: var(--text-secondary);
 }
 
 .navbar .navbar-1 form .search-icon {
   position: absolute;
-  left: 25px;
-  top: 8px;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.5;
 }
 
 .nav-links {
-  padding: 7px 13px;
-  border: solid 1px blue;
-  border-radius: 3px;
-  background-color: #e7f8fe;
+  padding: 8px 16px;
+  border: 1.5px solid var(--primary);
+  border-radius: 6px;
+  background-color: var(--active);
+  color: var(--primary);
   cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  font-size: 14px;
 }
 
 .nav-links:hover {
-  background-color: #d3e4eb;
+  background-color: var(--primary);
+  color: white;
+  box-shadow: 0px 4px 12px rgba(30, 136, 229, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Theme Toggle Button - Premium Style */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 16px;
+}
+
+.theme-toggle:hover {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+  box-shadow: 0px 4px 12px rgba(30, 136, 229, 0.3);
+  transform: scale(1.05);
+}
+
+.theme-toggle:active {
+  transform: scale(0.95);
+}
+
+/* Responsive */
+@media screen and (max-width: 760px) {
+  .navbar .navbar-1 form {
+    max-width: 150px;
+  }
+
+  .res-nav {
+    display: none;
+  }
+
+  .slide-in-icon {
+    display: block;
+  }
+
+  .navbar .navbar-1 form input {
+    padding: 8px 10px 8px 30px;
+    font-size: 12px;
+  }
+
+  .navbar-2 {
+    gap: 8px;
+  }
+
+  .nav-links {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
 }
 
 @media screen and (max-width: 1120px) {

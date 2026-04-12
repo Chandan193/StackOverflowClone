@@ -1,7 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import decode from "jwt-decode";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
 
 import logo from "../../assets/logo.png";
 import search from "../../assets/search-solid.svg";
@@ -9,17 +11,19 @@ import Avatar from "../../components/Avatar/Avatar";
 import "./Navbar.css";
 import { setCurrentUser } from "../../actions/currentUser";
 import bars from "../../assets/bars-solid.svg";
+import { useTheme } from "../../hooks/useTheme";
 
 const Navbar = ({ handleSlideIn }) => {
   const dispatch = useDispatch();
   var User = useSelector((state) => state.currentUserReducer);
   const navigate = useNavigate();
+  const { isDark, toggleTheme } = useTheme();
 
-  const handleLogout = () => {
+  const handleLogout = useCallback(() => {
     dispatch({ type: "LOGOUT" });
     navigate("/");
     dispatch(setCurrentUser(null));
-  };
+  }, [dispatch, navigate]);
 
   useEffect(() => {
     const token = User?.token;
@@ -30,7 +34,7 @@ const Navbar = ({ handleSlideIn }) => {
       }
     }
     dispatch(setCurrentUser(JSON.parse(localStorage.getItem("Profile"))));
-  }, [User?.token, dispatch]);
+  }, [User?.token, dispatch, handleLogout]);
 
   return (
     <nav className="main-nav">
@@ -57,6 +61,9 @@ const Navbar = ({ handleSlideIn }) => {
           </form>
         </div>
         <div className="navbar-2">
+          <button className="theme-toggle" onClick={toggleTheme} title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}>
+            <FontAwesomeIcon icon={isDark ? faSun : faMoon} style={{ fontSize: "18px" }} />
+          </button>
           {User === null ? (
             <Link to="/Auth" className="nav-item nav-links">
               Log in
