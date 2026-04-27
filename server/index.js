@@ -14,16 +14,17 @@ const app = express();
 const normalizeOrigin = (origin = "") => origin.trim().replace(/\/+$/, "");
 const defaultAllowedOrigins = [
   "http://localhost:3000",
+  "http://127.0.0.1:3000",
   "https://stack-overflow-clone-alpha-ten.vercel.app",
 ];
 
 // Allowed origins from ENV (supports multiple URLs)
-const allowedOrigins = (
-  process.env.CLIENT_URL || defaultAllowedOrigins.join(",")
-)
+const envAllowedOrigins = (process.env.CLIENT_URL || "")
   .split(",")
   .map((origin) => normalizeOrigin(origin))
   .filter(Boolean);
+
+const allowedOrigins = [...new Set([...defaultAllowedOrigins, ...envAllowedOrigins])];
 
 // CORS configuration
 const corsOptions = {
@@ -60,6 +61,9 @@ app.use("/answer", answerRoutes);
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.message);
+  if (err.message === "Not allowed by CORS") {
+    return res.status(403).json({ message: err.message });
+  }
   res.status(500).json({ message: err.message });
 });
 

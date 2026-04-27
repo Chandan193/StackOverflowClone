@@ -1,7 +1,7 @@
 .left-sidebar {
-  width: 164px;
-  box-shadow: 2px 0 12px var(--shadow);
-  background-color: var(--surface);
+  width: 188px;
+  box-shadow: 8px 0 24px color-mix(in srgb, var(--shadow) 32%, transparent);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--surface) 90%, transparent), var(--surface-light));
   height: auto;
   min-height: calc(100vh - 56px);
   transition: all 0.3s ease;
@@ -10,6 +10,26 @@
   border-right: 1px solid var(--border);
   position: sticky;
   top: 56px;
+}
+
+.side-nav-head {
+  padding: 2px 16px 14px;
+}
+
+.side-nav-head h3 {
+  margin: 2px 0 0;
+  font-size: 20px;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+
+.side-nav-eyebrow {
+  margin: 0;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.11em;
+  color: var(--text-secondary);
+  font-weight: 700;
 }
 
 .nav-btn {
@@ -30,16 +50,25 @@
   height: auto;
   max-width: 100%;
   position: sticky;
-  margin: 20px 0px;
-  padding: 20px 0px;
+  margin: 12px 0px;
+  padding: 16px 0px;
 }
 
 .side-nav-div {
-  padding: 10px 0px;
+  padding: 8px 0px;
 }
 
-.side-nav-div div {
-  padding-left: 10px;
+.side-nav-section-title-wrap {
+  padding: 0 16px 8px;
+}
+
+.side-nav-section-title {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  font-weight: 700;
+  margin: 0;
 }
 
 .side-nav-links {
@@ -48,22 +77,42 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding-left: 10px;
+  width: calc(100% - 20px);
+  margin: 3px 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  gap: 8px;
   transition: all 0.2s ease;
-  font-weight: 500;
+  font-weight: 600;
+  border: 1px solid transparent;
+}
+
+.side-nav-links:visited {
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+
+.side-nav-link-text {
+  padding-left: 2px;
+}
+
+.side-nav-link-offset {
+  padding-left: 30px;
 }
 
 .side-nav-links:hover {
   color: var(--primary);
-  background-color: var(--hover);
-  padding-left: 14px;
+  background: color-mix(in srgb, var(--active) 70%, transparent);
+  border-color: rgba(66, 165, 245, 0.38);
+  transform: translateX(2px);
 }
 
 .active {
-  font-weight: bold;
+  font-weight: 700;
   color: var(--primary);
-  border-left: 3px solid var(--primary);
-  padding-left: 7px;
+  border-color: rgba(66, 165, 245, 0.5);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--active) 70%, transparent), color-mix(in srgb, var(--chip-a-bg) 55%, transparent));
+  box-shadow: 0 8px 18px color-mix(in srgb, var(--shadow) 28%, transparent);
 }
 
 .side-nav-item {

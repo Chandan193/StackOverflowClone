@@ -94,16 +94,17 @@
   flex-grow: 1;
   padding: 0px 12px;
   position: relative;
-  max-width: 250px;
+  max-width: 380px;
+  min-width: 280px;
 }
 
 .navbar .navbar-1 form input {
   width: 100%;
   margin: 0;
-  padding: 10px 12px 10px 36px;
+  padding: 10px 14px 10px 40px;
   font-size: 14px;
   border: 1px solid var(--border);
-  border-radius: 6px;
+  border-radius: 999px;
   background-color: var(--surface);
   color: var(--text);
   transition: all 0.2s ease;
@@ -121,7 +122,7 @@
 
 .navbar .navbar-1 form .search-icon {
   position: absolute;
-  left: 12px;
+  left: 24px;
   top: 50%;
   transform: translateY(-50%);
   opacity: 0.5;
@@ -177,7 +178,8 @@
 /* Responsive */
 @media screen and (max-width: 760px) {
   .navbar .navbar-1 form {
-    max-width: 150px;
+    max-width: 220px;
+    min-width: 150px;
   }
 
   .res-nav {

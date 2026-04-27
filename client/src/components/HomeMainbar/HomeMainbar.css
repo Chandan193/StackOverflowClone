@@ -8,13 +8,50 @@
 .main-bar-title-wrap {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 10px;
+  max-width: 680px;
+  position: relative;
+  z-index: 1;
+}
+
+.main-bar-kicker {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  margin: 0;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primary-dark);
+  background: linear-gradient(135deg, var(--chip-a-bg), var(--chip-b-bg));
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  font-weight: 700;
 }
 
 .main-bar-subtitle {
   color: var(--text-secondary);
-  font-size: 13px;
+  font-size: 15px;
+  line-height: 1.5;
   margin: 0;
+}
+
+.main-bar-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.meta-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--surface-light) 80%, transparent);
 }
 
 .questions-count-chip {
@@ -42,36 +79,57 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 24px;
-  padding: 20px;
-  background-color: var(--surface);
-  border-radius: 8px;
-  box-shadow: 0px 2px 6px var(--shadow);
+  padding: 26px;
+  background:
+    radial-gradient(circle at top right, color-mix(in srgb, var(--primary) 14%, transparent), transparent 55%),
+    linear-gradient(165deg, color-mix(in srgb, var(--surface) 85%, var(--background) 15%), var(--surface-light));
+  border-radius: 16px;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  box-shadow: 0px 12px 28px color-mix(in srgb, var(--shadow) 32%, transparent);
+  position: relative;
+  overflow: hidden;
+}
+
+.main-bar-header::after {
+  content: "";
+  position: absolute;
+  right: -70px;
+  top: -50px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--secondary) 24%, transparent);
+  filter: blur(2px);
+  opacity: 0.8;
 }
 
 .main-bar-header h1 {
-  font-weight: 600;
+  font-weight: 800;
   color: var(--text);
   margin: 0;
-  font-size: 28px;
+  font-size: clamp(2rem, 1.8rem + 0.8vw, 2.55rem);
+  letter-spacing: -0.03em;
 }
 
 .main-bar-header .ask-btn {
-  padding: 12px 24px;
-  border-radius: 6px;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  padding: 13px 26px;
+  border-radius: 12px;
+  background: linear-gradient(140deg, var(--primary) 0%, color-mix(in srgb, var(--primary-dark) 85%, #000000 15%) 100%);
   color: white;
-  border: none;
+  border: 1px solid rgba(66, 165, 245, 0.45);
   text-decoration: none;
   transition: all 0.3s ease;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 16px;
   cursor: pointer;
-  box-shadow: 0px 4px 12px rgba(30, 136, 229, 0.3);
+  box-shadow: 0px 10px 22px color-mix(in srgb, var(--primary) 38%, transparent);
+  position: relative;
+  z-index: 1;
 }
 
 .main-bar-header .ask-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0px 6px 16px rgba(30, 136, 229, 0.4);
+  box-shadow: 0px 14px 24px color-mix(in srgb, var(--primary) 46%, transparent);
 }
 
 .main-bar-header .ask-btn:active {
@@ -245,12 +303,13 @@
 
   .main-bar-header {
     flex-direction: column;
-    gap: 12px;
+    gap: 14px;
     align-items: flex-start;
+    padding: 20px;
   }
 
   .main-bar-header h1 {
-    font-size: 24px;
+    font-size: 30px;
   }
 
   .main-bar-header .ask-btn {

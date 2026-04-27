@@ -24,6 +24,7 @@ const HomeMainbar = () => {
     <div className="main-bar">
       <div className="main-bar-header">
         <div className="main-bar-title-wrap">
+          <p className="main-bar-kicker">Knowledge Feed</p>
           {location.pathname === "/" ? (
             <h1>Top Questions</h1>
           ) : (
@@ -32,8 +33,12 @@ const HomeMainbar = () => {
           <p className="main-bar-subtitle">
             Discover fresh discussions, trending tags, and expert answers.
           </p>
+          <div className="main-bar-meta">
+            <span className="meta-pill">Curated daily</span>
+            <span className="meta-pill">Community powered</span>
+          </div>
         </div>
-        <button onClick={checkAuth} className="ask-btn">
+        <button onClick={checkAuth} className="ask-btn" type="button">
           Ask Question
         </button>
       </div>
