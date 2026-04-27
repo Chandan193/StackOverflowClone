@@ -10,6 +10,8 @@ export const signup = (authData, navigate) => async (dispatch) => {
     dispatch(fetchAllUsers());
     navigate("/");
   } catch (error) {
+    const message = error?.response?.data?.message || "Signup failed";
+    alert(message);
     console.log(error);
   }
 };
@@ -21,6 +23,8 @@ export const login = (authData, navigate) => async (dispatch) => {
     dispatch(setCurrentUser(JSON.parse(localStorage.getItem("Profile"))));
     navigate("/");
   } catch (error) {
+    const message = error?.response?.data?.message || "Login failed";
+    alert(message);
     console.log(error);
   }
 };

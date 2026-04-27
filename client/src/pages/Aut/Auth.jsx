@@ -24,13 +24,17 @@ const Auth = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!email && !password) {
+    if (!email || !password) {
       alert("Enter email and password");
+      return;
     }
+
     if (isSignup) {
       if (!name) {
         alert("Enter a name to continue");
+        return;
       }
+
       dispatch(signup({ name, email, password }, navigate));
     } else {
       dispatch(login({ email, password }, navigate));

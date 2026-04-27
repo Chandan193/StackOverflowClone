@@ -11,10 +11,18 @@ dotenv.config();
 
 const app = express();
 
+const normalizeOrigin = (origin = "") => origin.trim().replace(/\/+$/, "");
+const defaultAllowedOrigins = [
+  "http://localhost:3000",
+  "https://stack-overflow-clone-alpha-ten.vercel.app",
+];
+
 // Allowed origins from ENV (supports multiple URLs)
-const allowedOrigins = (process.env.CLIENT_URL || "")
+const allowedOrigins = (
+  process.env.CLIENT_URL || defaultAllowedOrigins.join(",")
+)
   .split(",")
-  .map((origin) => origin.trim())
+  .map((origin) => normalizeOrigin(origin))
   .filter(Boolean);
 
 // CORS configuration
@@ -23,7 +31,9 @@ const corsOptions = {
     // Allow requests with no origin (Postman, mobile apps)
     if (!origin) return callback(null, true);
 
-    if (allowedOrigins.includes(origin)) {
+    const normalizedRequestOrigin = normalizeOrigin(origin);
+
+    if (allowedOrigins.includes(normalizedRequestOrigin)) {
       callback(null, true);
     } else {
       callback(new Error("Not allowed by CORS"));

@@ -1,7 +1,19 @@
 import axios from "axios";
 
+const deployedBackendUrl = "https://stackoverflowclone-s0fb.onrender.com";
+
+const fallbackBaseUrl =
+  window.location.hostname === "localhost"
+    ? "http://localhost:5000"
+    : deployedBackendUrl;
+
+const apiBaseUrl = (process.env.REACT_APP_API_URL || fallbackBaseUrl).replace(
+  /\/+$/,
+  ""
+);
+
 const API = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || "http://localhost:5000",
+  baseURL: apiBaseUrl,
 });
 
 API.interceptors.request.use((req) => {

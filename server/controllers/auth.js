@@ -5,16 +5,25 @@ import users from "../models/auth.js";
 
 export const signup = async (req, res) => {
   const { name, email, password } = req.body;
+
+  if (!name || !email || !password) {
+    return res
+      .status(400)
+      .json({ message: "Name, email, and password are required." });
+  }
+
+  const normalizedEmail = email.toLowerCase().trim();
+
   try {
-    const existinguser = await users.findOne({ email });
+    const existinguser = await users.findOne({ email: normalizedEmail });
     if (existinguser) {
-      return res.status(404).json({ message: "User already Exist." });
+      return res.status(409).json({ message: "User already exists." });
     }
 
     const hashedPassword = await bcrypt.hash(password, 12);
     const newUser = await users.create({
       name,
-      email,
+      email: normalizedEmail,
       password: hashedPassword,
     });
     const token = jwt.sign(
@@ -24,16 +33,23 @@ export const signup = async (req, res) => {
     );
     res.status(200).json({ result: newUser, token });
   } catch (error) {
-    res.status(500).json("Something went worng...");
+    res.status(500).json({ message: "Something went wrong." });
   }
 };
 
 export const login = async (req, res) => {
   const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res.status(400).json({ message: "Email and password are required." });
+  }
+
+  const normalizedEmail = email.toLowerCase().trim();
+
   try {
-    const existinguser = await users.findOne({ email });
+    const existinguser = await users.findOne({ email: normalizedEmail });
     if (!existinguser) {
-      return res.status(404).json({ message: "User don't Exist." });
+      return res.status(404).json({ message: "User does not exist." });
     }
     const isPasswordCrt = await bcrypt.compare(password, existinguser.password);
     if (!isPasswordCrt) {
@@ -46,6 +62,6 @@ export const login = async (req, res) => {
     );
     res.status(200).json({ result: existinguser, token });
   } catch (error) {
-    res.status(500).json("Something went worng...");
+    res.status(500).json({ message: "Something went wrong." });
   }
 };
