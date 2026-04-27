@@ -18,6 +18,11 @@ const defaultAllowedOrigins = [
   "https://stack-overflow-clone-alpha-ten.vercel.app",
 ];
 
+const isTrustedVercelOrigin = (origin) =>
+  /^https:\/\/stack-overflow-clone(?:-frontend)?-[a-z0-9-]+\.vercel\.app$/i.test(
+    origin
+  );
+
 // Allowed origins from ENV (supports multiple URLs)
 const envAllowedOrigins = (process.env.CLIENT_URL || "")
   .split(",")
@@ -34,7 +39,10 @@ const corsOptions = {
 
     const normalizedRequestOrigin = normalizeOrigin(origin);
 
-    if (allowedOrigins.includes(normalizedRequestOrigin)) {
+    if (
+      allowedOrigins.includes(normalizedRequestOrigin) ||
+      isTrustedVercelOrigin(normalizedRequestOrigin)
+    ) {
       callback(null, true);
     } else {
       callback(new Error("Not allowed by CORS"));
